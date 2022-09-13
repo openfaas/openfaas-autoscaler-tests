@@ -9,7 +9,15 @@ export function sleep() {
 }
 
 export function cows() {
-  http.get(`${openfaasURL}/function/sleep`), {
+  http.get(`${openfaasURL}/function/cows`), {
     tags: { openfaas_function: 'cows' }
+  }
+}
+
+export function bcrypt() {
+  const payloadText =  'test'
+
+  http.post(`${openfaasURL}/function/bcrypt`, payloadText), {
+    tags: { openfaas_function: 'bcrypt' }
   }
 }
