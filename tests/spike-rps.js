@@ -1,3 +1,7 @@
+const start_load = 50
+const max_load = 600
+const end_load = 30
+
 export const options = {
   scenarios: {
     spike_rps: {
@@ -7,12 +11,12 @@ export const options = {
       preAllocatedVUs: 2,  // Preallocate 2 VUs before starting the test.
       maxVUs: 50,
       stages: [
-        { duration: '10s', target: 50 }, // ramp to 50 over 10 seconds
-        { duration: '1m', target: 50 },
-        { duration: '10s', target: 600 }, // spike to 600
-        { duration: '3m', target: 600 }, // stay at 600 for 3 minutes
-        { duration: '10s', target: 30 }, // scale down.
-        { duration: '2m', target: 30 },
+        { duration: '10s', target: start_load }, // ramp to 'start_load' over 10 seconds
+        { duration: '1m', target: start_load  },
+        { duration: '10s', target: max_load }, // spike to 'max_load'
+        { duration: '3m', target: max_load }, // stay at 'max_load' for 3 minutes
+        { duration: '10s', target: end_load }, // scale down to 'end_load' and stay there for 2 minutes
+        { duration: '2m', target: end_load },
         { duration: '10s', target: 0 },
       ],
       exec: 'cows'

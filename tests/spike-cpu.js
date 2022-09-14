@@ -1,3 +1,7 @@
+const start_load = 20
+const max_load = 120
+const end_load = 20
+
 export const options = {
   scenarios: {
     spike_cpu: {
@@ -7,12 +11,12 @@ export const options = {
       preAllocatedVUs: 2,  // Preallocate 2 VUs before starting the test.
       maxVUs: 50,
       stages: [
-        { duration: '10s', target: 20 }, // ramp to 20 over 10 seconds
-        { duration: '1m', target: 20 },
-        { duration: '10s', target: 120 }, // spike to 120
-        { duration: '3m', target: 120 }, // stay at 120 for 3 minutes
-        { duration: '10s', target: 20 }, // scale down.
-        { duration: '2m', target: 20 },
+        { duration: '10s', target: start_load }, // ramp to 'start_load' over 10 seconds
+        { duration: '1m', target: start_load  },
+        { duration: '10s', target: max_load }, // spike to 'max_load'
+        { duration: '3m', target: max_load }, // stay at 'max_load' for 3 minutes
+        { duration: '10s', target: end_load }, // scale down to 'end_load' and stay there for 2 minutes
+        { duration: '2m', target: end_load },
         { duration: '10s', target: 0 },
       ],
       exec: 'bcrypt'
