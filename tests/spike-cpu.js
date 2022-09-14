@@ -1,6 +1,6 @@
 export const options = {
   scenarios: {
-    ramp_capacity: {
+    spike_cpu: {
       executor: 'ramping-arrival-rate',
       startRate: 0,
       timeUnit: '1s', // Start `startRate` iterations per second
