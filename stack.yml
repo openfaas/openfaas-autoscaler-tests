@@ -1,0 +1,57 @@
+provider:
+  name: openfaas
+
+functions:
+  bcrypt:
+    skip_build: true
+    image: alexellis2/bcrypt:0.1.2
+    labels:
+      com.openfaas.scale.min: 1
+      com.openfaas.scale.max: 10
+      com.openfaas.scale.target: 500
+      com.openfaas.scale.type: cpu
+
+      com.openfaas.git-branch: master
+      com.openfaas.git-owner: alexellis
+      com.openfaas.git-repo: autoscaling-functions
+      com.openfaas.git-sha: 16766fc0abc26bd1f73765a73875e6a760ddffd0
+    annotations:
+      com.openfaas.git-repo-url: https://github.com/alexellis/autoscaling-functions
+      github: true
+
+  cows:
+    skip_build: true
+    image: ghcr.io/openfaas/cows:latest
+    labels:
+      com.openfaas.scale.min: 1
+      com.openfaas.scale.max: 10
+      com.openfaas.scale.target: 50
+      com.openfaas.scale.type: rps
+
+      com.openfaas.git-branch: master
+      com.openfaas.git-owner: openfaas
+      com.openfaas.git-repo: store-functions
+      com.openfaas.git-sha: f79e2c86e8d67f747d1e449ba6ca63eb5858e5bb
+    annotations:
+      com.openfaas.git-repo-url: https://github.com/openfaas/store-functions
+      github: true
+
+  sleep:
+    skip_build: true
+    image: ghcr.io/openfaas/sleep:latest
+    labels:
+      com.openfaas.scale.min: 1
+      com.openfaas.scale.max: 10
+      com.openfaas.scale.target: 5
+      com.openfaas.scale.type: capacity
+
+      com.openfaas.git-branch: master
+      com.openfaas.git-owner: openfaas
+      com.openfaas.git-repo: store-functions
+      com.openfaas.git-sha: f79e2c86e8d67f747d1e449ba6ca63eb5858e5bb
+    annotations:
+      com.openfaas.git-repo-url: https://github.com/openfaas/store-functions
+      github: true
+    readonly_root_filesystem: true
+    environment:
+      sleep_duration: 1s
