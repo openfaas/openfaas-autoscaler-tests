@@ -4,7 +4,7 @@ export const options = {
       executor: 'ramping-vus',
       startVUs: 0,
       stages: [
-        { duration: '3m', target: 70 }, // ramp to 70 over 2 minutes
+        { duration: '4m', target: 70 }, // ramp to 70 over 4 minutes
       ],
       exec: 'sleep'
     }

@@ -1,7 +1,7 @@
 const min_load = 20
 const max_load = 40
-const interval = "40s"
-const ramp_interval = "10s"
+const interval = "2m"
+const ramp_interval = "15s"
 
 export const options = {
   scenarios: {
